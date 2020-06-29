@@ -1,20 +1,19 @@
 <?php
-// src/Controller/WildController.php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-Class DefaultController extends AbstractController
+class DefaultController extends AbstractController
 {
-   /**
-     * @Route("/default", name="app_index")
-    */
-    public function index() :Response
+    /**
+     * @Route("/", name="app_index")
+     */
+    public function index()
     {
-        return $this->render('default/index.html.twig', [
-                'bienvenue' => 'Bienvenue !',
+        return $this->render('/index.html.twig', [
+            'controller_name' => 'DefaultController',
         ]);
     }
-}    
+}
