@@ -1,19 +1,16 @@
-{% extends 'base.html.twig' %}
-{% block title %}{{ categoryName }}{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
 
-    {% for program in programs %}
-        <div class="media">
-            <div class="media-body">
-                <h1 class="mt-0">Id : {{ program.id }} - {{ program.title }}</h1>
-                <p>{{ program.summary }}</p>
-            </div>
-        </div>
-    {% endfor %}
 
-    <a href="{{ path('wild_index') }}">
-        Retour à l'accueil
-    </a>
+    {% for program in programs %}
+    {{ program.id }}
+    {{ program.title }}<br>
+    {{ program.summary }}<br>
+
+
+    {% else %}
+        Aucune catégorie trouvée.
+    {% endfor %}
 
 {% endblock %}
