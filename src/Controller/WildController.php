@@ -4,13 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Season;
 use App\Entity\Category;
+use App\Entity\Episode;
 use App\Entity\Program; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Repository\ProgramRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\SeasonRepository;
+use App\Repository\EpisodeRepository;
 
 /**
  * @Route("wild", name="wild_")
@@ -105,10 +108,27 @@ Class WildController extends AbstractController
         }
         
         $program = $season->getProgram();
-    
+       
         return $this->render('wild/season.html.twig', [
             'program' => $program,
             'season' => $season,
         ]);
     }   
+
+    /**
+    * @Route("/episode/{id}", name="show_episode")
+    */
+
+    public function showEpisode(Episode $episode): Response
+    {
+
+        $program = $season->getProgram();
+
+        return $this->render('wild/episode.html.twig', [
+            'program' => $program,
+            'season' => $season,
+            'episode'=>$episode,
+    ]);
+    }
+
 }
