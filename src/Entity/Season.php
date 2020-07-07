@@ -44,11 +44,11 @@ class Season
     /**
      * @ORM\OneToMany(targetEntity=Episode::class, mappedBy="season", orphanRemoval=true)
      */
-    private $yes;
+    private $episodes;
 
     public function __construct()
     {
-        $this->yes = new ArrayCollection();
+        $this->episodes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,31 +107,28 @@ class Season
     /**
      * @return Collection|Episode[]
      */
-    public function getYes(): Collection
+    public function getEpisodes(): Collection
     {
-        return $this->yes;
+        return $this->episodes;
     }
-
-    public function addYe(Episode $ye): self
+    public function addEpisode(Episode $episode): self
     {
-        if (!$this->yes->contains($ye)) {
-            $this->yes[] = $ye;
-            $ye->setSeason($this);
+        if (!$this->episodes->contains($episode)) {
+            $this->episodes[] = $episode;
+            $episode->setSeason($this);
         }
-
         return $this;
     }
-
-    public function removeYe(Episode $ye): self
+    public function removeEpisode(Episode $episode): self
     {
-        if ($this->yes->contains($ye)) {
-            $this->yes->removeElement($ye);
+        if ($this->episodes->contains($episode)) {
+            $this->episodes->removeElement($episode);
             // set the owning side to null (unless already changed)
-            if ($ye->getSeason() === $this) {
-                $ye->setSeason(null);
+            if ($episode->getSeason() === $this) {
+                $episode->setSeason(null);
             }
         }
-
         return $this;
     }
+
 }
