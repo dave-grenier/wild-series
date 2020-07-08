@@ -1,16 +1,26 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Épisode de la saison{% endblock %}
+{% extends 'base.html.twig' %}
+{% block title %}Saison {{ season.number }} de {{ program.title }}{% endblock %}
 
 {% block body %}
-    <h1>Épisode {{ season.number }} </h1>
-       
-        <div>
-            <h2> {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-            <p>{{ program.summary }}</p>
-        </div>
-        
-    <a href="{{ path('app_index') }}">
+    <h1>{{ program.title }} (série télévisée)</h1>
+    <div>
+        <h2>Saison {{ season.number }} de {{ program.title }}</h2>
+        {{ season.description | raw }}
+    </div>
+    <div class="episode-box title-box">
+        <span>Liste des épisodes</span>
+        <ul>
+            {% for episode in episodes %}
+                <li>
+                    <span>Épisode {{  episode.number }} : {{  episode.title }}</span>
+                </li>
+            {% else %}
+                Aucune série trouvée.
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{{ path('wild_index') }}">
         Retour à l'accueil
     </a>
 {% endblock %}
